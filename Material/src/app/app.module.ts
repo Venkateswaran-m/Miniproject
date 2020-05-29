@@ -1,13 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+ 
+import { AngularFireDatabaseModule } from "angularfire2/database";
+import { AngularFireModule } from "angularfire2";
 import {MaterialModule  } from "./material/material.module";
+import {MatSnackBarModule} from '@angular/material/snack-bar'; 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { EmployeeComponent } from './employees/employee/employee.component';
 import { EmployeeService } from "./shared/employee.service";
-import { ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule,FormsModule } from "@angular/forms";
 import {MatGridListModule} from '@angular/material/grid-list'; 
 import {MatInputModule} from '@angular/material/input'; 
 import {MatFormFieldModule} from '@angular/material/form-field';   
@@ -15,14 +18,21 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {MatRadioModule} from '@angular/material/radio'; 
 import {MatSelectModule} from '@angular/material/select'; 
+import { environment } from "../environments/environment";
+import {MatTableModule} from '@angular/material/table';
+import {MatIconModule} from '@angular/material/icon';  
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatButtonModule} from '@angular/material/button';
 
 
-import {MatButtonModule} from '@angular/material/button'; 
+import {MatSortModule} from '@angular/material/sort'; 
+import { OpportunityListComponent } from './employees/opportunity-list/opportunity-list.component'; 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeesComponent,
-    EmployeeComponent
+    EmployeeComponent,
+    OpportunityListComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +45,16 @@ import {MatButtonModule} from '@angular/material/button';
     BrowserAnimationsModule,
     MatRadioModule,
     MatSelectModule,
-    MatButtonModule
+    MatButtonModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
+    MatSnackBarModule,
+    MatTableModule,
+    MatIconModule,
+    MatPaginatorModule,
+    MatSortModule,
+    FormsModule
+    
 
   
   ],
