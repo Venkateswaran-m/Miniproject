@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {FormGroup,FormControl,Validators, MinLengthValidator  } from "@angular/forms";
 import { AngularFireDatabase,AngularFireList } from "angularfire2/database";
+import { HttpClient,HttpClientModule, HttpHeaders } from "@angular/common/http";
+import { Opportunity } from "../opportunity";
 
 
 
@@ -8,9 +10,13 @@ import { AngularFireDatabase,AngularFireList } from "angularfire2/database";
 @Injectable({
   providedIn: 'root'
 })
-export class EmployeeService {
 
-  constructor(private firebase:AngularFireDatabase) { }
+export class EmployeeService {
+  populateForm(opportunity) {
+    this.form.setValue(opportunity);
+  }
+
+  constructor(private firebase:AngularFireDatabase,private http:HttpClient) { }
 
   opportunityList:AngularFireList<any>;
 
@@ -22,8 +28,7 @@ form : FormGroup = new FormGroup({
   city:new FormControl(''),
   gender:new FormControl('1'),
   department:new FormControl(0),
-  hireDate:new FormControl(''),
-  isPermanent:new FormControl(false)
+ 
 });
 
 initializeFormGroup(){
@@ -35,19 +40,36 @@ initializeFormGroup(){
     city:'',
     gender:'1',
     department:0,
-    hireDate:'',
-    isPermanent:false
+    
      
   })
 }
 
+
 getOpportunities(){
+//  console.log("podalanga line");
+  //console.log(this.http.get("http://localhost:8080/all"));
   this.opportunityList=this.firebase.list('opportunities');
-  return this.opportunityList.snapshotChanges();
+  
+ return this.opportunityList.snapshotChanges();
+ //return this.http.get("http://localhost:8080/all");
+}
+public deleteById(id:number)
+{
+  return this.http.delete("http://localhost:8080/deletecandidate/"+id)
+}
+public getAllCandidates()
+{
+    return this.http.get("http://localhost:8080/all")
 }
 
+
 insertOpportunity(opportunity){
-    this.opportunityList.push({
+  //console.log(opportunity);
+ // let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+  //return this.http.post("http://localhost:8080/addopportunity",opportunity,{ headers: headers });
+//return this.http.post("localhost:8080/addopportunity?hiringManager=John Smith&managerEmail=john.smith@gmail.com&contactNumber=9876544321&location=Chennai&skills=Java&expectedDuration=12&opportunity_name=Developer",opportunity)
+   this.opportunityList.push({
       fullName:opportunity.fullName,
       mobile:opportunity.mobile,
       email:opportunity.email,

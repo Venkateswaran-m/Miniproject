@@ -23,16 +23,19 @@ import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';  
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatButtonModule} from '@angular/material/button';
+import { HttpClientModule } from '@angular/common/http';
 
-
+import {MatDialogModule} from '@angular/material/dialog';
 import {MatSortModule} from '@angular/material/sort'; 
-import { OpportunityListComponent } from './employees/opportunity-list/opportunity-list.component'; 
+import { OpportunityListComponent } from './employees/opportunity-list/opportunity-list.component';
+import { ViewOpportunityComponent } from './view-opportunity/view-opportunity.component'; 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeesComponent,
     EmployeeComponent,
-    OpportunityListComponent
+    OpportunityListComponent,
+    ViewOpportunityComponent
   ],
   imports: [
     BrowserModule,
@@ -53,12 +56,14 @@ import { OpportunityListComponent } from './employees/opportunity-list/opportuni
     MatIconModule,
     MatPaginatorModule,
     MatSortModule,
-    FormsModule
-    
+    FormsModule,
+    MatDialogModule,
+    HttpClientModule    
 
   
   ],
   providers: [EmployeeService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[EmployeeComponent]
 })
 export class AppModule { }
