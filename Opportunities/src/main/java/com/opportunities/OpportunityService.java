@@ -14,9 +14,9 @@ public class OpportunityService {
 	@Autowired
 	OpportunityDao dao;
 
-	public void addOpportunity(Opportunity opportunity) {
-		dao.save(opportunity);
-	}
+//	public void addOpportunity(Opportunity opportunity) {
+//		dao.save(opportunity);
+//	}
 
 	public  List<Opportunity> getOpportunities() {
 
@@ -25,5 +25,25 @@ public class OpportunityService {
 	public void deleteCandidate(Integer id)
 	{
 		dao.deleteById(id);
+	}
+	public String updateOpportunity(Opportunity o) {
+		String responseString;
+		if(dao.updateOpportunity(o))
+			responseString="Inserted SucessFully";
+		else {
+			responseString="Somthing went wrong not added,please try again";
+		}
+		
+		return responseString;
+	}
+	public String addOpportunity(Opportunity o) {
+		String responseString;
+		if(dao.addOpportunity(o))
+			responseString="Inserted SucessFully";
+		else {
+			responseString="Please try again";
+		}
+		
+		return responseString;
 	}
 }

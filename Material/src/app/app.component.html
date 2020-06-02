@@ -1,1 +1,44 @@
-<app-employees></app-employees>
+ <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+    <title>Accolite University</title>
+  </head>
+  <body class="bg-light">
+  <div class="container">
+    <div class="signoutoption" *ngIf="loggedIn===true">
+        <br>
+        <button type="button" (click)="signOut()" class="btn btn-primary">Sign Out</button>
+    </div>
+    <div class="row py-5 justify-content-center">
+      <div class="col-md-8">
+              
+
+
+        <div class="centeralign" *ngIf="loggedIn===false">
+            <h1 class="text-center py-4">AU Management Portal</h1>  
+            <br>
+            <img src="../assets/Images/AU_logo.JPG" alt="Accolite University">
+            <br>
+            <br>         
+           <button type="button" (click)="signInWithGoogle()" class="btn btn-primary">Sign In With Google</button>
+        </div>
+        </div> 
+    </div>
+</div>       
+      <div *ngIf="loggedIn===true">
+         <app-employees></app-employees>
+        
+        </div>
+
+        
+</body>
+</html> 
+
+
+<!-- <app-employees></app-employees> -->

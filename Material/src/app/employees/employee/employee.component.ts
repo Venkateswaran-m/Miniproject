@@ -34,7 +34,8 @@ export class EmployeeComponent implements OnInit {
 
   onSubmit(){
     if(this.service.form.valid){
-      if(!this.service.form.get('$key').value)
+      console.log("form valid");
+      if(!this.service.form.get('id').value)
         this.service.insertOpportunity(this.service.form.value);
       //this.service.insertOpportunity(this.opportunityModel);
       else

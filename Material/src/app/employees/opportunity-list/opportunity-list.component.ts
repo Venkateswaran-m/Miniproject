@@ -20,7 +20,7 @@ export class OpportunityListComponent implements OnInit {
   constructor(private service: EmployeeService,private dialog:MatDialog,private notificationService:NotificationService) { }
   listData= new MatTableDataSource<Opportunity>();
  
-  displayedColumns:any=['opportunityName','managerEmail'];
+  displayedColumns:any=['id','opportunityName','managerEmail','contactNumber','location','skills','hiringManager','expectedDuration','actions',];
 @ViewChild(MatSort) sort: MatSort; 
 @ViewChild(MatPaginator) paginator:MatPaginator;
 searchKey:string;
@@ -76,11 +76,13 @@ searchKey:string;
    dialogConfig.width="60%";
    this.dialog.open(EmployeeComponent,dialogConfig);
  }
- onDelete($key){
-   if(confirm('Are you sure to delete this the record?')){
-   this.service.deleteOpportunity($key);
+ onDelete(id){
+   if(confirm('Are you sure to delete this the record?'+id)){
+   //this.service.deleteOpportunity(id);
+   let res=this.service.deleteOpportunity(id);
+    res.subscribe(data => console.log(data));
    this.notificationService.warn('! Deleted Successfully');
-   }
  }
  
+}
 }

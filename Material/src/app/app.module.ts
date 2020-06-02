@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
- 
+import { CommonModule } from "@angular/common";
+
 import { AngularFireDatabaseModule } from "angularfire2/database";
 import { AngularFireModule } from "angularfire2";
 import {MaterialModule  } from "./material/material.module";
@@ -25,10 +26,22 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatButtonModule} from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 
-import {MatDialogModule} from '@angular/material/dialog';
+import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import {MatSortModule} from '@angular/material/sort'; 
 import { OpportunityListComponent } from './employees/opportunity-list/opportunity-list.component';
 import { ViewOpportunityComponent } from './view-opportunity/view-opportunity.component'; 
+
+import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
+import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login"; 
+const config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider("1070556796195-2t0ujfgejrco964mcedr8vh389mcgc5b.apps.googleusercontent.com")
+  },]);
+  export function provideConfig() {
+    return config;
+  }
+  
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,11 +71,13 @@ import { ViewOpportunityComponent } from './view-opportunity/view-opportunity.co
     MatSortModule,
     FormsModule,
     MatDialogModule,
-    HttpClientModule    
+    HttpClientModule,
+    SocialLoginModule,
+    CommonModule
 
   
   ],
-  providers: [EmployeeService],
+  providers: [EmployeeService, {provide:AuthServiceConfig,useFactory: provideConfig},{provide: MatDialogRef,useValue: {}}],
   bootstrap: [AppComponent],
   entryComponents:[EmployeeComponent]
 })
