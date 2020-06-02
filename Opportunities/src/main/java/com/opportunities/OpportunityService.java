@@ -1,8 +1,12 @@
 package com.opportunities;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 
 @Component
 public class OpportunityService {
@@ -14,8 +18,12 @@ public class OpportunityService {
 		dao.save(opportunity);
 	}
 
-	public @ResponseBody Iterable<Opportunity> getAllOpportunities() {
+	public  List<Opportunity> getOpportunities() {
 
-		return dao.findAll();
+		return  dao.getAllOpportunities();
+	}
+	public void deleteCandidate(Integer id)
+	{
+		dao.deleteById(id);
 	}
 }

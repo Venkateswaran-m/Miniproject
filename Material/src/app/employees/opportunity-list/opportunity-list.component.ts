@@ -7,6 +7,7 @@ import { pipe } from 'rxjs/internal/util/pipe';
 import { MatDialog,MatDialogConfig } from "@angular/material/dialog";
 import { EmployeeComponent } from '../employee/employee.component';
 import { NotificationService } from 'src/app/shared/notification.service';
+import { Opportunity } from 'src/app/opportunity';
 
 
 @Component({
@@ -17,28 +18,37 @@ import { NotificationService } from 'src/app/shared/notification.service';
 export class OpportunityListComponent implements OnInit {
 
   constructor(private service: EmployeeService,private dialog:MatDialog,private notificationService:NotificationService) { }
-  listData:MatTableDataSource<any>;
+  listData= new MatTableDataSource<Opportunity>();
  
-  displayedColumns:string[]=['fullName','email','mobile','city','actions'];
+  displayedColumns:any=['opportunityName','managerEmail'];
 @ViewChild(MatSort) sort: MatSort; 
 @ViewChild(MatPaginator) paginator:MatPaginator;
 searchKey:string;
   ngOnInit(): void {
 
     this.service.getOpportunities().subscribe(
-      list=>{
+ 
+       (data:any[])=> {
+         console.log(data);
+         this.listData.data=data;
+         //this.listData=new MatTableDataSource(array);        
+         this.listData.sort=this.sort;
+         this.listData.paginator=this.paginator;
+ 
+
+       }); 
+      
+              /* list=>{
         let array=list.map(item=>{
           return{
             $key:item.key,
             ...item.payload.val()
           };
         
-        });
-        this.listData=new MatTableDataSource(array);
-        this.listData.sort=this.sort;
-        this.listData.paginator=this.paginator;
+        });*/
+       // console.log(array);
       
-      });
+      
   }
   
  onSearchClear(){

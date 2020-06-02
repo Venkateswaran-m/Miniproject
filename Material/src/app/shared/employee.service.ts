@@ -22,7 +22,7 @@ export class EmployeeService {
 
 form : FormGroup = new FormGroup({
   $key:new FormControl(null),
-  fullName:new FormControl('',Validators.required),
+  opportunityName:new FormControl('',Validators.required),
   email:new FormControl('',Validators.email),
   mobile:new FormControl('',[Validators.required,Validators.minLength(8)] ),
   city:new FormControl(''),
@@ -34,7 +34,7 @@ form : FormGroup = new FormGroup({
 initializeFormGroup(){
   this.form.setValue({
     $key:null,
-    fullName:'',
+    opportunityName:'',
     email:'',
     mobile:'',
     city:'',
@@ -47,11 +47,11 @@ initializeFormGroup(){
 
 
 getOpportunities(){
-//  console.log("podalanga line");
-  //console.log(this.http.get("http://localhost:8080/all"));
-  this.opportunityList=this.firebase.list('opportunities');
-  
- return this.opportunityList.snapshotChanges();
+  //console.log("From backend");
+ // console.log(this.http.get("http://localhost:8080/all"));
+ // this.opportunityList=this.firebase.list('opportunities');
+ return this.http.get("http://localhost:8080/all");
+// return this.opportunityList.snapshotChanges();
  //return this.http.get("http://localhost:8080/all");
 }
 public deleteById(id:number)
@@ -70,7 +70,7 @@ insertOpportunity(opportunity){
   //return this.http.post("http://localhost:8080/addopportunity",opportunity,{ headers: headers });
 //return this.http.post("localhost:8080/addopportunity?hiringManager=John Smith&managerEmail=john.smith@gmail.com&contactNumber=9876544321&location=Chennai&skills=Java&expectedDuration=12&opportunity_name=Developer",opportunity)
    this.opportunityList.push({
-      fullName:opportunity.fullName,
+      opportunityName:opportunity.opportunityName,
       mobile:opportunity.mobile,
       email:opportunity.email,
       city:opportunity.city,
@@ -81,7 +81,7 @@ insertOpportunity(opportunity){
 
 updateOpportunity(opportunity){
   this.opportunityList.update(opportunity.$key,{
-    fullName:opportunity.fullName,
+    opportunityName:opportunity.opportunityName,
     mobile:opportunity.mobile,
     email:opportunity.email,
     city:opportunity.city,
