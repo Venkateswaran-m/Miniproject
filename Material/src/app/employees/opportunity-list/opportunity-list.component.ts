@@ -69,7 +69,9 @@ searchKey:string;
 
  }
  onEdit(row){
-   this.service.populateForm(row);
+  console.log(row); 
+  this.service.populateForm(row);
+   
    const dialogConfig= new MatDialogConfig();
    dialogConfig.disableClose=true;
    dialogConfig.autoFocus=true;

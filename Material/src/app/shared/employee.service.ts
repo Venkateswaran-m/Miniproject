@@ -79,7 +79,7 @@ export class EmployeeService {
     //   });
 
     console.log(opportunity);
-    return this.http.post("http://localhost:8080/addopportunity/", opportunity,{responseType:'text' as 'json'});
+    return this.http.post("http://localhost:8080/addopportunity/", opportunity);
 
   }
 
