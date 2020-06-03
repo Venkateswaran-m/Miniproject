@@ -29,12 +29,22 @@ public class AddOpportunityController {
 //		return "completed";
 //	}
 	
-	@PostMapping("/addopportunity")
-	public String addEmployee(Opportunity o)
-	{
-		return opportunityService.addOpportunity(o);
-	}
+//	@PostMapping("/addopportunity")
+//	public String addEmployee(@RequestBody Opportunity o)
+//	{
+//		System.out.println("Adding Opportunity");
+//		return opportunityService.addOpportunity(o);
+//	}
 
+	@RequestMapping(value="/addopportunity", method=RequestMethod.POST)
+
+	public String addCandidate(@RequestBody Opportunity candidate)
+	{
+		//System.out.println(candidate.toString());
+		//candidateService.addCandidate(new Candidate("harish","sundar","harish@gmail.com","cadvd","sdsd","vvewv","wewre"));
+		opportunityService.addOpportunity(candidate);
+		return "completed";
+	}
 	@GetMapping(path = "/all")
 	public @ResponseBody List<Opportunity> getAlOpportunities() {
 			System.out.println("Fetching Data");

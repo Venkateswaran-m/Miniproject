@@ -35,11 +35,11 @@ export class EmployeeComponent implements OnInit {
   onSubmit(){
     if(this.service.form.valid){
       console.log("form valid");
-      if(!this.service.form.get('id').value)
+//if(!this.service.form.get('id').value)
         this.service.insertOpportunity(this.service.form.value);
       //this.service.insertOpportunity(this.opportunityModel);
-      else
-        this.service.updateOpportunity(this.service.form.value);
+      //else
+        //this.service.updateOpportunity(this.service.form.value);
       this.service.form.reset();
       this.service.initializeFormGroup();
       this.notificationService.success(':: Submitted successfully');

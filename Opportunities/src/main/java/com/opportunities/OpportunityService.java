@@ -14,9 +14,10 @@ public class OpportunityService {
 	@Autowired
 	OpportunityDao dao;
 
-//	public void addOpportunity(Opportunity opportunity) {
-//		dao.save(opportunity);
-//	}
+	public String addOpportunity(Opportunity opportunity) {
+		dao.save(opportunity);
+		return "Success";
+	}
 
 	public  List<Opportunity> getOpportunities() {
 
@@ -36,14 +37,14 @@ public class OpportunityService {
 		
 		return responseString;
 	}
-	public String addOpportunity(Opportunity o) {
-		String responseString;
-		if(dao.addOpportunity(o))
-			responseString="Inserted SucessFully";
-		else {
-			responseString="Please try again";
-		}
-		
-		return responseString;
-	}
+//	public String addOpportunity(Opportunity o) {
+//		String responseString;
+//		if(dao.addOpportunity(o))
+//			responseString="Inserted SucessFully";
+//		else {
+//			responseString="Please try again";
+//		}
+//		
+//		return responseString;
+//	}
 }

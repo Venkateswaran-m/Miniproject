@@ -78,8 +78,8 @@ export class EmployeeService {
     //     department:opportunity.department
     //   });
 
-    console.log("localhost:8080/addopportunity"+ opportunity);
-    return this.http.post("localhost:8080/addopportunity", opportunity);
+    console.log(opportunity);
+    return this.http.post("http://localhost:8080/addopportunity/", opportunity,{responseType:'text' as 'json'});
 
   }
 
