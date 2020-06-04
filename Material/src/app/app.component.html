@@ -1,44 +1,44 @@
- <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">  
-    <title>Accolite University</title>
-  </head>
-  <body class="bg-light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Accolite University</title>
+</head>
+
+<body>
   <div class="container">
+    
+
+
+
+
+    <mat-toolbar  style="background-color: white;">
+      <img src="../assets/logo.jpg" style="height:50px; width: auto" alt="Accolite University">OPPORTUNITY MANAGEMENT
+
+    <div *ngIf="loggedIn===false">
+      <button mat-raised-button color="primary" style="right: -650px; " (click)="signInWithGoogle()">Sign In With Google</button>
+    </div>
     <div class="signoutoption" *ngIf="loggedIn===true">
-        <br>
-        <button type="button" (click)="signOut()" class="btn btn-primary">Sign Out</button>
+      <br>
+      <button mat-raised-button color="primary" style="right: -650px; " (click)="signOut()">Sign Out</button>
     </div>
-    <div class="row py-5 justify-content-center">
-      <div class="col-md-8">
-              
+  </mat-toolbar>
+  </div>
+  <div *ngIf="loggedIn===true">
+    <app-employees></app-employees>
+  </div>
 
 
-        <div class="centeralign" *ngIf="loggedIn===false">
-            <h1 class="text-center py-4">AU Management Portal</h1>  
-            <br>
-            <img src="../assets/Images/AU_logo.JPG" alt="Accolite University">
-            <br>
-            <br>         
-           <button type="button" (click)="signInWithGoogle()" class="btn btn-primary">Sign In With Google</button>
-        </div>
-        </div> 
-    </div>
-</div>       
-      <div *ngIf="loggedIn===true">
-         <app-employees></app-employees>
-        
-        </div>
-
-        
 </body>
-</html> 
+
+</html> -->
+
+<app-trends></app-trends>
 
 
-<!-- <app-employees></app-employees> -->
+ <!-- <app-employees></app-employees> -->

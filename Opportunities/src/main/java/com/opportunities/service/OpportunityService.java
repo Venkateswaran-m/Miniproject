@@ -1,14 +1,19 @@
-package com.opportunities;
+package com.opportunities.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.opportunities.dao.OpportunityDao;
+import com.opportunities.model.LocationCount;
+import com.opportunities.model.Opportunity;
 
-@Component
+
+@Service
 public class OpportunityService {
 
 	@Autowired
@@ -20,10 +25,13 @@ public class OpportunityService {
 	}
 
 	public  List<Opportunity> getOpportunities() {
-
-		return  dao.getAllOpportunities();
+		
+		List<Opportunity> opportunities =dao.getAllOpportunities();
+		System.out.println("Fetching data : "+ opportunities);
+		//return  dao.getAllOpportunities();
+		return opportunities;
 	}
-	public void deleteCandidate(Integer id)
+	public void deleteOpportunity(Integer id)
 	{
 		dao.deleteById(id);
 	}
@@ -36,6 +44,11 @@ public class OpportunityService {
 		}
 		
 		return responseString;
+	}
+	public List<LocationCount> getLocation()
+	{
+	//	dao.getLocation().get(1).toString();
+		return dao.getLocation();
 	}
 //	public String addOpportunity(Opportunity o) {
 //		String responseString;

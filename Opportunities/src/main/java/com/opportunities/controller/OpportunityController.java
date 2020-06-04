@@ -1,4 +1,4 @@
-package com.opportunities;
+package com.opportunities.controller;
 
 import java.util.List;
 
@@ -15,9 +15,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.opportunities.model.LocationCount;
+import com.opportunities.model.Opportunity;
+import com.opportunities.service.OpportunityService;
+
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-public class AddOpportunityController {
+public class OpportunityController {
 	@Autowired
 	OpportunityService opportunityService;
 
@@ -30,7 +34,7 @@ public class AddOpportunityController {
 //	}
 	
 //	@PostMapping("/addopportunity")
-//	public String addEmployee(@RequestBody Opportunity o)
+//	public String addopportunity(@RequestBody Opportunity o)
 //	{
 //		System.out.println("Adding Opportunity");
 //		return opportunityService.addOpportunity(o);
@@ -38,11 +42,10 @@ public class AddOpportunityController {
 
 	@RequestMapping(value="/addopportunity", method=RequestMethod.POST)
 
-	public String addCandidate(@RequestBody Opportunity candidate)
+	public String addOpportunity(@RequestBody Opportunity opportunity)
 	{
-		//System.out.println(candidate.toString());
-		//candidateService.addCandidate(new Candidate("harish","sundar","harish@gmail.com","cadvd","sdsd","vvewv","wewre"));
-		opportunityService.addOpportunity(candidate);
+		
+		opportunityService.addOpportunity(opportunity);
 		return "completed";
 	}
 	@GetMapping(path = "/all")
@@ -53,7 +56,7 @@ public class AddOpportunityController {
 	@DeleteMapping("/deleteopportunity/{Id}")
 	public List<Opportunity> deleteOpportunity(@PathVariable Integer Id)
 	{
-		opportunityService.deleteCandidate(Id);
+		opportunityService.deleteOpportunity(Id);
 		System.out.println("Deleting");
 		return opportunityService.getOpportunities();
 	}
@@ -63,5 +66,10 @@ public class AddOpportunityController {
 	{
 		System.out.println("Updating");
 		return opportunityService.updateOpportunity(o);
+	}
+	@GetMapping("/getlocationcount")
+	public List<LocationCount> getLocationCount()
+	{
+		return opportunityService.getLocation();
 	}
 }

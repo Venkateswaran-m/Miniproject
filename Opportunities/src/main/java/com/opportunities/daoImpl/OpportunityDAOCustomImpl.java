@@ -1,9 +1,13 @@
-package com.opportunities;
+package com.opportunities.daoImpl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+
+import com.opportunities.dao.OpportunityDAOCustom;
+import com.opportunities.model.LocationCount;
+import com.opportunities.model.Opportunity;
 
 public class OpportunityDAOCustomImpl implements OpportunityDAOCustom {
 
@@ -38,6 +42,16 @@ public class OpportunityDAOCustomImpl implements OpportunityDAOCustom {
 		else {
 			return false;
 		}
+	}
+	public List<LocationCount> getLocation()
+	{
+		
+		 return jdbcTemplate.query(
+	                "select location,count(*) as count from opportunity group by location",
+	                (rs, rowNum) ->
+	                        new LocationCount(rs.getString("location"), rs.getInt("count")   )   	                      
+	                        
+	        );
 	}
 
 }

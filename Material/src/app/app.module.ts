@@ -26,13 +26,15 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatButtonModule} from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import {MatSortModule} from '@angular/material/sort'; 
 import { OpportunityListComponent } from './employees/opportunity-list/opportunity-list.component';
 import { ViewOpportunityComponent } from './view-opportunity/view-opportunity.component'; 
 
 import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
-import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login"; 
+import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
+import { TrendsComponent } from './trends/trends.component'; 
 const config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
@@ -48,7 +50,8 @@ const config = new AuthServiceConfig([
     EmployeesComponent,
     EmployeeComponent,
     OpportunityListComponent,
-    ViewOpportunityComponent
+    ViewOpportunityComponent,
+    TrendsComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +76,8 @@ const config = new AuthServiceConfig([
     MatDialogModule,
     HttpClientModule,
     SocialLoginModule,
-    CommonModule
+    CommonModule,
+    NgxChartsModule,  
 
   
   ],

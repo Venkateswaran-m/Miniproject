@@ -12,6 +12,10 @@ import { Opportunity } from "../opportunity";
 })
 
 export class EmployeeService {
+  countByLocation() {
+    console.log("location count obtained");
+      return this.http.get("http://localhost:8080/getlocationcount")
+  }
   populateForm(opportunity) {
     this.form.setValue(opportunity);
   }

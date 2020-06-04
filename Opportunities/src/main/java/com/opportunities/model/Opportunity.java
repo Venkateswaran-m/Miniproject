@@ -1,4 +1,4 @@
-package com.opportunities;
+package com.opportunities.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -103,6 +103,7 @@ public class Opportunity {
 				+ ", managerEmail=" + managerEmail + ", contactNumber=" + contactNumber + ", location=" + location
 				+ ", skills=" + skills + ", expectedDuration=" + expectedDuration + "]";
 	}
+
 
 
 
