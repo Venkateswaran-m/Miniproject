@@ -29,26 +29,12 @@ searchKey:string;
  
        (data:any[])=> {
          console.log(data);
-         this.listData.data=data;
-         //this.listData=new MatTableDataSource(array);        
+         this.listData.data=data;        
          this.listData.sort=this.sort;
-        //this.listData.paginator=this.paginator;
         setTimeout(() => this.listData.paginator = this.paginator);
  
 
-       }); 
-      
-              /* list=>{
-        let array=list.map(item=>{
-          return{
-            $key:item.key,
-            ...item.payload.val()
-          };
-        
-        });*/
-       // console.log(array);
-      
-      
+       });       
   }
   
  onSearchClear(){
@@ -80,7 +66,6 @@ searchKey:string;
  }
  onDelete(id){
    if(confirm('Are you sure to delete this the record?'+id)){
-   //this.service.deleteOpportunity(id);
    let res=this.service.deleteOpportunity(id);
     res.subscribe(data => console.log(data));
    this.notificationService.warn('! Deleted Successfully');

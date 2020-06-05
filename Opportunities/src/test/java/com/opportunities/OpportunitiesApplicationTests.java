@@ -17,6 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import com.opportunities.dao.OpportunityDao;
+import com.opportunities.model.LocationCount;
 import com.opportunities.model.Opportunity;
 import com.opportunities.service.OpportunityService;
 
@@ -27,44 +28,48 @@ class OpportunitiesApplicationTests {
 	private OpportunityService service;
 	@MockBean
 	private OpportunityDao repository;
-//
-//	@Test
-//	void contextLoads() {
-//	}
-//	@Test
-//	public void getOpportunitiesTest() {
-//		when(repository.getAllOpportunities()).thenReturn(Stream.of(
-//				new Opportunity(1, "Developer", "Venkat", "managerEmail", "contactNumber", "location", "skills", "32"),
-//				new Opportunity(2, "opportunityName", "hiringManager", "managerEmail", "contactNumber", "location",
-//						"skills", "expectedDuration"))
-//				.collect(Collectors.toList()));
-//		assertEquals(2, service.getOpportunities().size());
-//	}
-//
-//	@Test
-//	public void deleteOpportunityTest() {
-//		Opportunity o = new Opportunity(1, "Developer", "Venkat", "managerEmail", "contactNumber", "location", "skills", "32");
-//		service.deleteOpportunity(1);
-//		verify(repository,times(1)).deleteById(1);
-//		//when(service.deleteOpportunity(1)).thenReturn(1);
-//		
-//	}
-//	
-//	@Test
-//	public void addOpportunityTest() {
-//		Opportunity o = new Opportunity(1, "Developer", "Venkat", "managerEmail", "contactNumber", "location", "skills", "32");
-//		when(repository.addOpportunity(o)).thenReturn(true);
-//		assertEquals("Success",service.addOpportunity(o));
-//	}
-//	
-//	@Test
-//	public void updateOpportunityTest() {
-//		Opportunity o = new Opportunity(1, "Developer", "Venkat", "managerEmail", "contactNumber", "location", "skills", "32");
-//		when(repository.updateOpportunity(o)).thenReturn(true);
-//		assertEquals("Inserted SucessFully",service.updateOpportunity(o));
-//}
-//	public void locationCountTest() {
-//		when()
-//	}
-//	
+
+	@Test
+	void contextLoads() {
+	}
+	@Test
+	public void getOpportunitiesTest() {
+		when(repository.getAllOpportunities()).thenReturn(Stream.of(
+				new Opportunity(1, "Developer", "Venkat", "managerEmail", "contactNumber", "location", "skills", "32"),
+				new Opportunity(2, "opportunityName", "hiringManager", "managerEmail", "contactNumber", "location",
+						"skills", "expectedDuration"))
+				.collect(Collectors.toList()));
+		assertEquals(2, service.getOpportunities().size());
+	}
+
+	@Test
+	public void deleteOpportunityTest() {
+		Opportunity o = new Opportunity(1, "Developer", "Venkat", "managerEmail", "contactNumber", "location", "skills", "32");
+		service.deleteOpportunity(1);
+		verify(repository,times(1)).deleteById(1);
+		//when(service.deleteOpportunity(1)).thenReturn(1);
+		
+	}
+	
+	@Test
+	public void addOpportunityTest() {
+		Opportunity o = new Opportunity(1, "Developer", "Venkat", "managerEmail", "contactNumber", "location", "skills", "32");
+		when(repository.addOpportunity(o)).thenReturn(true);
+		assertEquals("Success",service.addOpportunity(o));
+	}
+	
+	@Test
+	public void updateOpportunityTest() {
+		Opportunity o = new Opportunity(1, "Developer", "Venkat", "managerEmail", "contactNumber", "location", "skills", "32");
+		when(repository.updateOpportunity(o)).thenReturn(true);
+		assertEquals("Inserted SucessFully",service.updateOpportunity(o));
+}
+	@Test
+	public void getLocationCountTest() {
+		
+		when(repository.getLocation())
+				.thenReturn(Stream.of(new LocationCount("chennai",5)).collect(Collectors.toList()));
+		assertEquals(1, service.getLocation().size());
+	}
+	
 }

@@ -34,19 +34,23 @@ export class TrendsComponent implements OnInit {
    ngOnInit(): void {
 
     
-    this.opportunityService.countByLocation().subscribe(trends => {
+    this.opportunityService.countByLocation().subscribe((trends:any[]) => {
       console.log(trends)
-      let data: any[] = [];
-      for (let trend of trends) {
-        data.push({
-          "name": trend.location,
-          "value": trend.count,
-        })
-      }
-      this.single = data;
-    });
+         let data: any[] =[];     
+         for (let trend of trends)
+         {
+            data.push({
+                "name" : trend.location,
+                "value" : trend.count,
+             })
+            }
+           this.single =data;
+         });
+         
+    
+     }
 
 
    }
 
-}
+

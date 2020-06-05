@@ -25,10 +25,7 @@
     </div>
     <div class="signoutoption" *ngIf="loggedIn===true">
       <nav>
-        
-      <!-- <a routerLink="/Opportunities" routerLinkActive="active"></a> -->
       <br>
-      <!-- <button mat-stroked-button color="primary"> <a routerLink="/Trends" routerLinkActive="active">Trends</a></button> -->
       <a mat-button routerLink="/Trends" routerLinkActive="active">Trends</a>
           <a mat-button routerLink="/Opportunities" routerLinkActive="active" >Opportunities</a>
         
@@ -39,7 +36,6 @@
   </mat-toolbar>
   </div>
   <div *ngIf="loggedIn===true">
-    <!-- <app-employees></app-employees> -->
     <router-outlet></router-outlet>
   </div>
 
@@ -47,8 +43,3 @@
 </body>
 
 </html>
-
-<!-- <app-trends></app-trends> -->
-
-
- <!-- <app-employees></app-employees> -->

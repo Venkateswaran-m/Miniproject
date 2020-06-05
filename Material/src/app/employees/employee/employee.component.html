@@ -1,22 +1,21 @@
 <form [formGroup]="service.form" class="normal form" (submit)="onSubmit()">
-     <mat-grid-list cols="2" rowHeight="300px">
-         <mat-grid-tile>
-             <div class="controles-container">
-                 <!-- <mat-form-field>
-                  <input  formControlName="id" matInput placeholder="ID">
-                </mat-form-field> -->
+    <mat-grid-list cols="2" rowHeight="300px">
+        <mat-grid-tile>
+            <div class="controles-container">
                 <mat-form-field>
-                    <input formControlName="contactNumber" matInput placeholder="Contact Number *">  
-                    <mat-error *ngIf="service.form.controls['contactNumber'].errors?.required">This field is mandatory</mat-error>
-                    <mat-error *ngIf="service.form.controls['contactNumber'].errors?.minlength">Minimum 8 characters required</mat-error>
+                    <input formControlName="contactNumber" matInput placeholder="Contact Number *">
+                    <mat-error *ngIf="service.form.controls['contactNumber'].errors?.required">This field is mandatory
+                    </mat-error>
+                    <mat-error *ngIf="service.form.controls['contactNumber'].errors?.minlength">Minimum 8 characters
+                        required</mat-error>
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input formControlName="expectedDuration" matInput placeholder="Expected Duration">  
+                    <input formControlName="expectedDuration" matInput placeholder="Expected Duration">
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input formControlName="hiringManager" matInput placeholder="Hiring Manager">  
+                    <input formControlName="hiringManager" matInput placeholder="Hiring Manager">
                 </mat-form-field>
 
             </div>
@@ -24,7 +23,7 @@
         <mat-grid-tile>
             <div class="controles-container">
                 <mat-form-field>
-                    <input formControlName="location" matInput placeholder="Job Location">  
+                    <input formControlName="location" matInput placeholder="Job Location">
                 </mat-form-field>
 
                 <mat-form-field>
@@ -33,54 +32,25 @@
                 </mat-form-field>
                 <mat-form-field>
                     <input formControlName="opportunityName" matInput placeholder="Opportunity Name*">
-                    <mat-error>This field is mandatory</mat-error>  
+                    <mat-error>This field is mandatory</mat-error>
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input formControlName="skills" matInput placeholder="Skills">  
+                    <input formControlName="skills" matInput placeholder="Skills">
                 </mat-form-field>
 
-                <input  formControlName="id" type="hidden" >
-                   
-                <!-- <mat-form-field>
-                    <input formControlName="id" matInput placeholder="Id">  
-                </mat-form-field> -->
-                    
-                    
-                
-               
-             
+                <input formControlName="id" type="hidden">
 
-        
-              
-                 <!--<div class="add-bottom-padding">
-                     <mat-radio-group formControlName="gender">
-                         <mat-radio-button value="1">Male</mat-radio-button>
-                         <mat-radio-button value="2">Female</mat-radio-button>
-                         <mat-radio-button value="3">Other</mat-radio-button>
-                      </mat-radio-group>
-                 </div> -->
-                 
-                
-                
-                 <!-- <mat-form-field>
-                     <mat-select formControlName="department" placeholder="Department">
-                         <mat-option>None</mat-option>
-                         <ng-container *ngFor="let department of departments">
-                             <mat-option value="{{department.id}}">{{department.value}}</mat-option>
-                         </ng-container>
+                <div class="button-row">
+                    <button mat-raised-button color="primary" type="submit"
+                        [disabled]="service.form.invalid">Submit</button>
+                    <button mat-raised-button color="warn" (click)="onClear()">Clear </button>
+                </div>
+            </div>
 
-                     </mat-select>
-                 </mat-form-field> -->
-                 <div class="button-row">
-                     <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid">Submit</button>
-                     <button mat-raised-button color="warn" (click)="onClear()">Clear </button>
-                 </div>
-             </div>
+        </mat-grid-tile>
 
-         </mat-grid-tile>
+    </mat-grid-list>
 
-     </mat-grid-list>
-     
 
 </form>

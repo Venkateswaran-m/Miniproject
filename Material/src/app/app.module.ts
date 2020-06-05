@@ -1,9 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from "@angular/common";
-
-import { AngularFireDatabaseModule } from "angularfire2/database";
-import { AngularFireModule } from "angularfire2";
 import {MatSnackBarModule} from '@angular/material/snack-bar'; 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,8 +26,6 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import {MatSortModule} from '@angular/material/sort'; 
 import { OpportunityListComponent } from './employees/opportunity-list/opportunity-list.component';
-import { ViewOpportunityComponent } from './view-opportunity/view-opportunity.component'; 
-
 import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
 import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
 import { TrendsComponent } from './trends/trends.component'; 
@@ -49,7 +44,6 @@ const config = new AuthServiceConfig([
     EmployeesComponent,
     EmployeeComponent,
     OpportunityListComponent,
-    ViewOpportunityComponent,
     TrendsComponent
   ],
   imports: [
@@ -64,8 +58,6 @@ const config = new AuthServiceConfig([
     MatRadioModule,
     MatSelectModule,
     MatButtonModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireDatabaseModule,
     MatSnackBarModule,
     MatTableModule,
     MatIconModule,

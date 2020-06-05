@@ -11,8 +11,6 @@ import { SocialUser, AuthService, GoogleLoginProvider } from 'angularx-social-lo
 })
 export class AppComponent implements OnInit {
   title = 'Material';
-
-
   signinForm: FormGroup;
   user: SocialUser;
   loggedIn: boolean;
@@ -21,8 +19,6 @@ export class AppComponent implements OnInit {
     this.loggedIn = false;
     this.authService.authState.subscribe((user) => {
       this.user = user;
-      //this.loggedIn = (user != null);
-      //console.log(this.user);
     });
   }
 
@@ -35,7 +31,6 @@ export class AppComponent implements OnInit {
               if (oAuthResponse['hd'] && oAuthResponse['hd'] == "accoliteindia.com") {
                 this.loggedIn = true;
                 localStorage.setItem('token', response.idToken);
-                //this.router.navigateByUrl('/dashboard');
               }
               else {
                 this.loggedIn = false;
@@ -48,6 +43,6 @@ export class AppComponent implements OnInit {
   signOut(): void {
     this.authService.signOut();
     this.loggedIn = false;
-    //this.router.navigate(['']);
+    
   }
 }

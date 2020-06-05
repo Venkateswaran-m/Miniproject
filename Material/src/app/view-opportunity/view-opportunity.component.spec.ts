@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
 
 import { ViewOpportunityComponent } from './view-opportunity.component';
 
@@ -8,7 +9,8 @@ describe('ViewOpportunityComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ViewOpportunityComponent ]
+      declarations: [ ViewOpportunityComponent ],
+      imports:[HttpClientModule]
     })
     .compileComponents();
   }));
