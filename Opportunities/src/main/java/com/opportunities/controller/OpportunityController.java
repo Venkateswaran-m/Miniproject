@@ -1,6 +1,8 @@
 package com.opportunities.controller;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,6 +27,9 @@ public class OpportunityController {
 	@Autowired
 	OpportunityService opportunityService;
 
+	private final static Logger LOGGER =  
+            Logger.getLogger(Logger.GLOBAL_LOGGER_NAME); 
+
 //	@RequestMapping(value="/addopportunity", method=RequestMethod.POST)
 //	public String addCandidate( Opportunity opportunity)
 //	{
@@ -44,32 +49,34 @@ public class OpportunityController {
 
 	public String addOpportunity(@RequestBody Opportunity opportunity)
 	{
-		
+		 LOGGER.log(Level.INFO, "Opportunity Added	"); 
 		opportunityService.addOpportunity(opportunity);
 		return "completed";
 	}
 	@GetMapping(path = "/all")
 	public @ResponseBody List<Opportunity> getAlOpportunities() {
-			System.out.println("Fetching Data");
+		 LOGGER.log(Level.INFO, "Retrieved opportunities"); 
 		return opportunityService.getOpportunities();
 	}
 	@DeleteMapping("/deleteopportunity/{Id}")
 	public List<Opportunity> deleteOpportunity(@PathVariable Integer Id)
 	{
 		opportunityService.deleteOpportunity(Id);
-		System.out.println("Deleting");
+		 LOGGER.log(Level.INFO, "Opportunity Deleted"); 
 		return opportunityService.getOpportunities();
 	}
 	
 	@PutMapping("/updateopportunity")
 	public String updateOpportunity(@RequestBody Opportunity o)
 	{
-		System.out.println("Updating");
+		 LOGGER.log(Level.INFO, "Opportunity Updated"); 
+		System.out.println("Updating : "+ o);
 		return opportunityService.updateOpportunity(o);
 	}
 	@GetMapping("/getlocationcount")
 	public List<LocationCount> getLocationCount()
 	{
+		 LOGGER.log(Level.INFO, "Location count obtained"); 
 		return opportunityService.getLocation();
 	}
 }

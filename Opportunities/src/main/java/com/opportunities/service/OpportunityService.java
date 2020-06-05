@@ -27,7 +27,6 @@ public class OpportunityService {
 	public  List<Opportunity> getOpportunities() {
 		
 		List<Opportunity> opportunities =dao.getAllOpportunities();
-		System.out.println("Fetching data : "+ opportunities);
 		//return  dao.getAllOpportunities();
 		return opportunities;
 	}

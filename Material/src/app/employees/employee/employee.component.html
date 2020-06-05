@@ -6,7 +6,7 @@
                   <input  formControlName="id" matInput placeholder="ID">
                 </mat-form-field> -->
                 <mat-form-field>
-                    <input formControlName="contactNumber" matInput placeholder="contactNumber*">  
+                    <input formControlName="contactNumber" matInput placeholder="Contact Number *">  
                     <mat-error *ngIf="service.form.controls['contactNumber'].errors?.required">This field is mandatory</mat-error>
                     <mat-error *ngIf="service.form.controls['contactNumber'].errors?.minlength">Minimum 8 characters required</mat-error>
                 </mat-form-field>
@@ -28,20 +28,23 @@
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input formControlName="managerEmail" matInput placeholder="managerEmail">
+                    <input formControlName="managerEmail" matInput placeholder="Manager Email">
                     <mat-error>Invalid email address</mat-error>
                 </mat-form-field>
                 <mat-form-field>
-                    <input formControlName="opportunityName" matInput placeholder="opportunityName*">
+                    <input formControlName="opportunityName" matInput placeholder="Opportunity Name*">
                     <mat-error>This field is mandatory</mat-error>  
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input formControlName="skills" matInput placeholder="skills">  
+                    <input formControlName="skills" matInput placeholder="Skills">  
                 </mat-form-field>
 
                 <input  formControlName="id" type="hidden" >
                    
+                <!-- <mat-form-field>
+                    <input formControlName="id" matInput placeholder="Id">  
+                </mat-form-field> -->
                     
                     
                 

@@ -4,7 +4,6 @@ import { CommonModule } from "@angular/common";
 
 import { AngularFireDatabaseModule } from "angularfire2/database";
 import { AngularFireModule } from "angularfire2";
-import {MaterialModule  } from "./material/material.module";
 import {MatSnackBarModule} from '@angular/material/snack-bar'; 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,7 +24,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatButtonModule} from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
-
+import {NgxPaginationModule} from 'ngx-pagination';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import {MatSortModule} from '@angular/material/sort'; 
@@ -78,7 +77,7 @@ const config = new AuthServiceConfig([
     SocialLoginModule,
     CommonModule,
     NgxChartsModule,  
-
+    NgxPaginationModule
   
   ],
   providers: [EmployeeService, {provide:AuthServiceConfig,useFactory: provideConfig},{provide: MatDialogRef,useValue: {}}],

@@ -1,4 +1,4 @@
-<!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <html lang="en">
@@ -24,21 +24,31 @@
       <button mat-raised-button color="primary" style="right: -650px; " (click)="signInWithGoogle()">Sign In With Google</button>
     </div>
     <div class="signoutoption" *ngIf="loggedIn===true">
+      <nav>
+        
+      <!-- <a routerLink="/Opportunities" routerLinkActive="active"></a> -->
       <br>
-      <button mat-raised-button color="primary" style="right: -650px; " (click)="signOut()">Sign Out</button>
+      <!-- <button mat-stroked-button color="primary"> <a routerLink="/Trends" routerLinkActive="active">Trends</a></button> -->
+      <a mat-button routerLink="/Trends" routerLinkActive="active">Trends</a>
+          <a mat-button routerLink="/Opportunities" routerLinkActive="active" >Opportunities</a>
+        
+      </nav>
+    
+      <button mat-raised-button color="primary" style="right: -650px;margin-top: 0px;padding-top: 0px; " (click)="signOut()">Sign Out</button>
     </div>
   </mat-toolbar>
   </div>
   <div *ngIf="loggedIn===true">
-    <app-employees></app-employees>
+    <!-- <app-employees></app-employees> -->
+    <router-outlet></router-outlet>
   </div>
 
 
 </body>
 
-</html> -->
+</html>
 
-<app-trends></app-trends>
+<!-- <app-trends></app-trends> -->
 
 
  <!-- <app-employees></app-employees> -->

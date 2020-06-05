@@ -19,7 +19,7 @@ export class EmployeeComponent implements OnInit {
     { id: 2, value: 'dep2' },
     { id: 3, value: 'dep3' },
   ]
-  //opportunityModel = new Opportunity("Developer", "John Greer", "abc@gmail.com", "123456789", "Chennai", "C++", "12");
+ 
   ngOnInit(): void {
     this.service.getOpportunities();
 
@@ -33,18 +33,6 @@ export class EmployeeComponent implements OnInit {
   }
 
   onSubmit() {
-    // if (this.service.form.valid) {
-    //   console.log("form valid");
-    //   if (!this.service.form.get('id').value)
-    //    this.service.insertOpportunity(this.service.form.value);
-    //   //this.service.insertOpportunity(this.opportunityModel);
-    //   else
-    //     this.service.updateOpportunity(this.service.form.value);
-    //   this.service.form.reset();
-    //   this.service.initializeFormGroup();
-    //   this.notificationService.success(':: Submitted successfully');
-    //   this.onClose();
-    // }
 
     if(this.service.form.valid)
     {

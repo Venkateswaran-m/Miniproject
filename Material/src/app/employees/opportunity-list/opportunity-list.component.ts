@@ -3,7 +3,6 @@ import { EmployeeService } from 'src/app/shared/employee.service';
 import { MatTableDataSource } from "@angular/material/table";
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
-import { pipe } from 'rxjs/internal/util/pipe';
 import { MatDialog,MatDialogConfig } from "@angular/material/dialog";
 import { EmployeeComponent } from '../employee/employee.component';
 import { NotificationService } from 'src/app/shared/notification.service';
@@ -20,7 +19,7 @@ export class OpportunityListComponent implements OnInit {
   constructor(private service: EmployeeService,private dialog:MatDialog,private notificationService:NotificationService) { }
   listData= new MatTableDataSource<Opportunity>();
  
-  displayedColumns:any=['id','opportunityName','managerEmail','contactNumber','location','skills','hiringManager','expectedDuration','actions',];
+  displayedColumns:any=['id','opportunityName','managerEmail','location','contactNumber','skills','hiringManager','expectedDuration','actions',];
 @ViewChild(MatSort) sort: MatSort; 
 @ViewChild(MatPaginator) paginator:MatPaginator;
 searchKey:string;
@@ -33,7 +32,8 @@ searchKey:string;
          this.listData.data=data;
          //this.listData=new MatTableDataSource(array);        
          this.listData.sort=this.sort;
-         this.listData.paginator=this.paginator;
+        //this.listData.paginator=this.paginator;
+        setTimeout(() => this.listData.paginator = this.paginator);
  
 
        }); 

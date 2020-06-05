@@ -96,6 +96,7 @@ export class EmployeeService {
     //   gender:opportunity.gender,
     //   department:opportunity.department   
     // } )
+
     console.log("http://localhost:8080/updateopportunity/" + opportunity);
     return this.http.put("http://localhost:8080/updateopportunity/", opportunity);
 

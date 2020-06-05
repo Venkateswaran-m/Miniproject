@@ -11,11 +11,11 @@ import { EmployeeService } from '../shared/employee.service';
 export class TrendsComponent implements OnInit {
   constructor(private opportunityService: EmployeeService) { }
   title = 'Angular Charts';
- 
 
-  counts:any;
+
+  counts: any;
   view: any[] = [600, 400];
-single;
+  single;
   // options for the chart
   showXAxis = true;
   showYAxis = true;
@@ -31,22 +31,22 @@ single;
     domain: ['red', 'blue', 'black', 'brown', 'yellow', 'green']
   };
   showLabels = true;
-  ngOnInit(): void {
+   ngOnInit(): void {
+
     
     this.opportunityService.countByLocation().subscribe(trends => {
-   console.log(trends)
-      let data: any[] =[];
-      for (let trend of trends)
-      {
-         data.push({
-             "name" : trend.location,
-             "value" : trend.count,
-          })
-         }
-        this.single =data;
-      });
-      
- 
-  }
+      console.log(trends)
+      let data: any[] = [];
+      for (let trend of trends) {
+        data.push({
+          "name": trend.location,
+          "value": trend.count,
+        })
+      }
+      this.single = data;
+    });
+
+
+   }
 
 }
