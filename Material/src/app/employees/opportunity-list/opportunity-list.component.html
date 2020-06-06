@@ -1,5 +1,5 @@
 <div class="search-div">
-    <button mat-raised-button (click)="onCreate()">
+    <button mat-raised-button type="button" (click)="onCreate()">
         <mat-icon>add</mat-icon>Create Opportunity
     </button>
     <mat-form-field class="search-form-field" floatLabel="never">
@@ -23,16 +23,16 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header>Manager Email</mat-header-cell>
         <mat-cell *matCellDef="let element">{{element.managerEmail}}</mat-cell>
     </ng-container>
-   
-    <ng-container matColumnDef="location">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Job Location</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{element.location}}</mat-cell>
-    </ng-container>
-    
     <ng-container matColumnDef="contactNumber">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Contact Number</mat-header-cell>
         <mat-cell *matCellDef="let element">{{element.contactNumber}}</mat-cell>
-    </ng-container>
+    </ng-container> 
+ <ng-container matColumnDef="location">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Job Location</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.location}}</mat-cell>
+    </ng-container> 
+    
+   
     <ng-container matColumnDef="skills">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Skills</mat-header-cell>
         <mat-cell *matCellDef="let element">{{element.skills}}</mat-cell>
@@ -48,8 +48,8 @@
     <ng-container matColumnDef="actions">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
         <mat-cell *matCellDef="let row">
-            <button mat-icon-button (click)="onEdit(row)"><mat-icon>launch</mat-icon></button>
-            <button mat-icon-button color="warn"  (click)="onDelete(row.id)"><mat-icon>delete_outline</mat-icon></button>
+            <button mat-icon-button (click)="onEdit(row)" type="button"><mat-icon>launch</mat-icon></button>
+            <button mat-icon-button color="warn" type="button"  (click)="onDelete(row.id)"><mat-icon>delete_outline</mat-icon></button>
         </mat-cell>
     </ng-container>
    

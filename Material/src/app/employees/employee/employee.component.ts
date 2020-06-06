@@ -39,7 +39,7 @@ export class EmployeeComponent implements OnInit {
       if(!this.service.form.get('id').value)
        {
           
-          
+          console.log("inserting");
           console.log(this.service.form.value);
         
           let res=this.service.insertOpportunity(this.service.form.value);

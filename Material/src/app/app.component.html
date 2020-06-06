@@ -22,7 +22,10 @@
 
     <div *ngIf="loggedIn===false">
       <button mat-raised-button color="primary" style="right: -650px; " (click)="signInWithGoogle()">Sign In With Google</button>
+      <br>
     </div>
+    
+    
     <div class="signoutoption" *ngIf="loggedIn===true">
       <nav>
       <br>
@@ -34,7 +37,12 @@
       <button mat-raised-button color="primary" style="right: -650px;margin-top: 0px;padding-top: 0px; " (click)="signOut()">Sign Out</button>
     </div>
   </mat-toolbar>
+<div *ngIf="loggedIn===false">
+  <img src="../assets/frontpage.jpg" style="width:fit-content;height:fit-content;">
+</div>
   </div>
+
+   
   <div *ngIf="loggedIn===true">
     <router-outlet></router-outlet>
   </div>
