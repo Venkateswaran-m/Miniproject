@@ -21,16 +21,13 @@ public class OpportunityDAOCustomImpl implements OpportunityDAOCustom {
 	private final String DELETE_OPPORTUNITY = "DELETE FROM opportunity WHERE id = ?";
 
 	public List<Opportunity> getAllOpportunities() {
-		try {
+		
 			return jdbcTemplate.query("select * from opportunity",
 					(rs, rowNum) -> new Opportunity(rs.getInt("id"), rs.getString("opportunity_name"),
 							rs.getString("hiring_manager"), rs.getString("manager_email"),
 							rs.getString("contact_number"), rs.getString("location"), rs.getString("skills"),
 							rs.getString("expected_duration")));
-		} catch (DataAccessException e) {
-			e.printStackTrace();
-			return null;
-		}
+		
 	}
 
 	public boolean updateOpportunity(Opportunity o) {
@@ -43,31 +40,23 @@ public class OpportunityDAOCustomImpl implements OpportunityDAOCustom {
 	}
 
 	public boolean addOpportunity(Opportunity o) {
-		try {
-			if (jdbcTemplate.update(INSERT_OPPORTUNITY, o.getContactNumber(), o.getExpectedDuration(),
-					o.getHiringManager(), o.getLocation(), o.getManagerEmail(), o.getOpportunityName(), o.getSkills(),
-					o.getId()) > 0)
-				return true;
-			else {
-				return false;
-			}
-		} catch (DataAccessException e) {
-			e.printStackTrace();
+
+		if (jdbcTemplate.update(INSERT_OPPORTUNITY, o.getContactNumber(), o.getExpectedDuration(), o.getHiringManager(),
+				o.getLocation(), o.getManagerEmail(), o.getOpportunityName(), o.getSkills(), o.getId()) > 0)
+			return true;
+		else {
 			return false;
 		}
+
 	}
 
 	public List<LocationCount> getLocation() {
 
-		try {
-			return jdbcTemplate.query("select location,count(*) as count from opportunity group by location",
-					(rs, rowNum) -> new LocationCount(rs.getString("location"), rs.getInt("count"))
+		return jdbcTemplate.query("select location,count(*) as count from opportunity group by location",
+				(rs, rowNum) -> new LocationCount(rs.getString("location"), rs.getInt("count"))
 
-			);
-		} catch (DataAccessException e) {
-			e.printStackTrace();
-			return null;
-		}
+		);
+
 	}
 
 }

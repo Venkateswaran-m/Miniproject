@@ -39,8 +39,7 @@ export class EmployeeComponent implements OnInit {
       if(!this.service.form.get('id').value)
        {
           
-          console.log("inserting");
-          console.log(this.service.form.value);
+        
         
           let res=this.service.insertOpportunity(this.service.form.value);
           res.subscribe((data)=>console.log(data));
@@ -48,8 +47,8 @@ export class EmployeeComponent implements OnInit {
         else{
          
          
-          console.log("inside update");
-          console.log(this.service.form.value);
+       
+         
           let resp=this.service.updateOpportunity(this.service.form.value);
           resp.subscribe((data)=>console.log(data));
 

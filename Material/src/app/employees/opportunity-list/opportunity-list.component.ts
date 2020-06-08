@@ -29,7 +29,7 @@ export class OpportunityListComponent implements OnInit {
     this.service.getOpportunities().subscribe(
 
       (data: any[]) => {
-        console.log(data);
+        
         this.listData.data = data;
         this.listData.sort = this.sort;
         setTimeout(() => this.listData.paginator = this.paginator);
@@ -55,11 +55,11 @@ export class OpportunityListComponent implements OnInit {
     dialogConfig.width = "60%";
     const dialogRef=this.dialog.open(EmployeeComponent, dialogConfig)
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+  
       this.service.getOpportunities().subscribe(
 
         (data: any[]) => {
-          console.log(data);
+          
           this.listData.data = data;
           this.listData.sort = this.sort;
           setTimeout(() => this.listData.paginator = this.paginator);
@@ -72,8 +72,7 @@ export class OpportunityListComponent implements OnInit {
   }
   onEdit(row) {
     event.preventDefault();
-    console.log("editing");
-    console.log(row);
+    
     this.service.populateForm(row);
 
     const dialogConfig = new MatDialogConfig();
@@ -84,11 +83,11 @@ export class OpportunityListComponent implements OnInit {
     const dialogRef = this.dialog.open(EmployeeComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+     
       this.service.getOpportunities().subscribe(
 
         (data: any[]) => {
-          console.log(data);
+         
           this.listData.data = data;
           this.listData.sort = this.sort;
           setTimeout(() => this.listData.paginator = this.paginator);

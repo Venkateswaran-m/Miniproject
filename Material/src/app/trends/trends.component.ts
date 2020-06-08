@@ -35,7 +35,7 @@ export class TrendsComponent implements OnInit {
 
 
     this.opportunityService.countByLocation().subscribe((trends: any[]) => {
-      console.log(trends)
+      
       let data: any[] = [];
       for (let trend of trends) {
         data.push({

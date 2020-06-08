@@ -12,7 +12,7 @@ import { Opportunity } from "../opportunity";
 
 export class EmployeeService {
   countByLocation() {
-    console.log("location count obtained");
+
       return this.http.get("http://localhost:8080/getlocationcount")
   }
   populateForm(opportunity) {
@@ -63,20 +63,19 @@ export class EmployeeService {
 
 
   insertOpportunity(opportunity) {
-    console.log(opportunity);
+   
     return this.http.post("http://localhost:8080/addopportunity/", opportunity);
 
   }
 
   updateOpportunity(opportunity) {
-    console.log("http://localhost:8080/updateopportunity/" + opportunity);
+  
     return this.http.put("http://localhost:8080/updateopportunity/", opportunity);
 
   }
 
   deleteOpportunity(id) {
-    console.log("inside del:" + id);
-    console.log("http://localhost:8080/deleteopportunity/" + id);
+    
     return this.http.delete("http://localhost:8080/deleteopportunity/" + id);
   }
 
