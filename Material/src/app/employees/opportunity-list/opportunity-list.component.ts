@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
 import { EmployeeService } from 'src/app/shared/employee.service';
 import { MatTableDataSource } from "@angular/material/table";
 import { MatSort } from '@angular/material/sort';
@@ -17,25 +18,18 @@ import { Opportunity } from 'src/app/opportunity';
 })
 export class OpportunityListComponent implements OnInit {
 
-  constructor(private service: EmployeeService, private dialog: MatDialog, private notificationService: NotificationService) { }
+  constructor(private service: EmployeeService, private dialog: MatDialog, private changeDetectorRefs: ChangeDetectorRef, private notificationService: NotificationService) { }
   listData = new MatTableDataSource<Opportunity>();
+  message:string;
 
   displayedColumns: any = ['id', 'opportunityName', 'managerEmail', 'contactNumber', 'location', 'skills', 'hiringManager', 'expectedDuration', 'actions',];
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(EmployeeComponent) emp:string;
   searchKey: string;
   ngOnInit(): void {
 
-    this.service.getOpportunities().subscribe(
-
-      (data: any[]) => {
-        
-        this.listData.data = data;
-        this.listData.sort = this.sort;
-        setTimeout(() => this.listData.paginator = this.paginator);
-
-
-      });
+    this.refreshData();
   }
 
   onSearchClear() {
@@ -53,26 +47,40 @@ export class OpportunityListComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "60%";
-    const dialogRef=this.dialog.open(EmployeeComponent, dialogConfig)
+    const dialogRef = this.dialog.open(EmployeeComponent, dialogConfig)
+   
+    //this.service.currentMessage.subscribe(message =>console.log( message))
+    //console.log(this.emp.im);
+    //this.refreshData();
     dialogRef.afterClosed().subscribe(result => {
-  
-      this.service.getOpportunities().subscribe(
+      console.log("Creating");     
+      console.log(result);
 
-        (data: any[]) => {
+      this.listData.data=[...this.listData.data,result];
+      console.log(this.listData.data);
+     //this.emp.
+    //   this.service.getOpportunities().subscribe(
+
+    //     (data: any[]) => {
+         
+    //       this.listData.data = data;
           
-          this.listData.data = data;
-          this.listData.sort = this.sort;
-          setTimeout(() => this.listData.paginator = this.paginator);
+    //       this.listData.sort = this.sort;
+    //       setTimeout(() => this.listData.paginator = this.paginator);
 
 
-        });
+    //     });
 
-    });
+     });
+      
 
   }
+
+
+
   onEdit(row) {
     event.preventDefault();
-    
+
     this.service.populateForm(row);
 
     const dialogConfig = new MatDialogConfig();
@@ -82,8 +90,10 @@ export class OpportunityListComponent implements OnInit {
 
     const dialogRef = this.dialog.open(EmployeeComponent, dialogConfig);
 
+    //this.refreshData();
     dialogRef.afterClosed().subscribe(result => {
-     
+      console.log("update");
+     console.log(result);
       this.service.getOpportunities().subscribe(
 
         (data: any[]) => {
@@ -94,17 +104,51 @@ export class OpportunityListComponent implements OnInit {
 
 
         });
+      // this.listData.data=[...this.listData.data.filter(instance=>instance.opportunityName!=result.opportunityName), result];      
+      // console.log(this.listData.data);
+      // this.listData.sort=this.sort;
 
     });
+      
+
   }
 
   onDelete(id) {
     event.preventDefault();
     if (confirm('Are you sure to delete this the record?' + id)) {
       let res = this.service.deleteOpportunity(id);
-      res.subscribe(data => console.log(data));
+      res.subscribe(data => {
+        console.log(data)
+        this.listData.data.splice(id, 1);
+        console.log("delete1");
+        console.log(this.listData.data.splice(id, 1));
+        // this.listData.data=[...this.listData.data];
+        this.changeDetectorRefs.detectChanges();
+        this.refreshData();
+        //this.listData.data={...this.listData.data.filter(instance=>instance!=data)};
+
+      });
       this.notificationService.warn('! Deleted Successfully');
+
     }
+
+  }
+
+  refreshData() {
+    this.listData = new MatTableDataSource<Opportunity>();
+    this.service.getOpportunities().subscribe(
+
+      (data: Opportunity[]) => {
+
+        this.listData.data = data;
+        console.log("ngoninit");
+        console.log(this.listData.data); 
+        this.listData.sort = this.sort;
+        setTimeout(() => this.listData.paginator = this.paginator);
+
+
+      });
+
 
   }
 }

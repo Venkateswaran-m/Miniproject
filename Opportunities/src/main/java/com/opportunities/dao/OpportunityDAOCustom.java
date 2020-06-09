@@ -11,5 +11,6 @@ public interface OpportunityDAOCustom {
 	boolean updateOpportunity(Opportunity o);
 	boolean addOpportunity(Opportunity o);
 	List<LocationCount> getLocation();
+	boolean checkUser(String token);
 	
 }

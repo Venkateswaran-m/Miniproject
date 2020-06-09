@@ -1,5 +1,6 @@
 package com.opportunities;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.any;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -37,6 +38,7 @@ import org.springframework.jdbc.core.RowMapperResultSetExtractor;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.util.NestedServletException;
 
+import com.opportunities.controller.OpportunityController;
 import com.opportunities.dao.OpportunityDao;
 import com.opportunities.daoImpl.OpportunityDAOCustomImpl;
 import com.opportunities.model.LocationCount;
@@ -57,6 +59,13 @@ class OpportunitiesApplicationTests {
 	private JdbcTemplate jdbc;
 	@Mock
 	private ResultSet rs;
+	@Autowired
+	private OpportunityController controller;
+
+	@Test
+	public void contexLoads() throws Exception {
+		assertThat(controller).isNotNull();
+	}
 	// Service layer
 
 	@Test

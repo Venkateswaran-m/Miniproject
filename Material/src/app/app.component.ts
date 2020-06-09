@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,NgZone } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { SocialUser, AuthService, GoogleLoginProvider } from 'angularx-social-login';
+import { EmployeeService } from './shared/employee.service';
+import { UserService } from './user.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +16,7 @@ export class AppComponent implements OnInit {
   signinForm: FormGroup;
   user: SocialUser;
   loggedIn: boolean;
-  constructor(private fb: FormBuilder, private authService: AuthService, private http: HttpClient, private router: Router) { }
+  constructor(private fb: FormBuilder, private authService: AuthService, private http: HttpClient, private router: Router,private service:UserService,private ngZone: NgZone) { }
   ngOnInit() {
     this.loggedIn = false;
     this.authService.authState.subscribe((user) => {
@@ -30,7 +32,11 @@ export class AppComponent implements OnInit {
             .subscribe((oAuthResponse) => {
               if (oAuthResponse['hd'] && oAuthResponse['hd'] == "accoliteindia.com") {
                 this.loggedIn = true;
-                localStorage.setItem('token', response.idToken);
+                
+               const str=response.idToken;
+               const str1=str.substring(0,10);
+               console.log(str1);
+                localStorage.setItem('token',str1);
               }
               else {
                 this.loggedIn = false;
@@ -39,6 +45,29 @@ export class AppComponent implements OnInit {
             })
         }
       )
+
+      let resp=this.service.checkUser();
+         
+      resp.subscribe(result => this.ngZone.run(() =>{
+        
+        let x=JSON.stringify(result);
+        console.log(x);
+         if(x === "Login sucessfull and User is Authenticated")
+         {
+          //this.router.navigateByUrl("/opportunity");
+          this.loggedIn=true;
+        }
+        else
+         {
+          //this.router.navigateByUrl("/login");    
+          this.loggedIn=false;
+         }
+     
+   },(error) => {
+     alert(JSON.stringify(error, undefined, 2));
+   }));
+
+
   }
   signOut(): void {
     this.authService.signOut();

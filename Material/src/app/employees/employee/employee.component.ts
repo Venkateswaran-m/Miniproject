@@ -1,17 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { EmployeeService } from "../../shared/employee.service";
 import { NotificationService } from "../../shared/notification.service";
-import { MatDialogRef } from "@angular/material/dialog";
+import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
   styleUrls: ['./employee.component.css']
 })
 export class EmployeeComponent implements OnInit {
-
+public message:string;
   constructor(public service: EmployeeService,
     public notificationService: NotificationService,
-    public dialogRef: MatDialogRef<EmployeeComponent>) { }
+    public dialogRef: MatDialogRef<EmployeeComponent>,@Inject(MAT_DIALOG_DATA) public data: string) { }
+
+    
+
+  cancel() {
+    this.dialogRef.close({ data: false }) // send data to parent component
+  }
+
+  confirm() {
+    this.dialogRef.close({ data: true }) // send data to parent component
+  }
 
   departments = [
     { id: 1, value: 'dep1' },
@@ -24,10 +34,16 @@ export class EmployeeComponent implements OnInit {
 
   }
 
+  close(){
+    this.dialogRef.close(  );
+  }
 
   onClear() {
+    
+    this.dialogRef.close( this.service.form.value );
     this.service.form.reset();
     this.service.initializeFormGroup();
+    
 
   }
 
@@ -37,15 +53,18 @@ export class EmployeeComponent implements OnInit {
     {
        
       if(!this.service.form.get('id').value)
-       {
+       {this.message="ABC";        
+       //this.dialogRef.close( this.service.form.value );
+        // this.service.currentMessage.subscribe(message => this.message = message)
+          let res=this.service.insertOpportunity(this.service.form.value).subscribe((data)=>
+          {console.log("datqa");
+          console.log(data);
+            
           
-        
-        
-          let res=this.service.insertOpportunity(this.service.form.value);
-          res.subscribe((data)=>console.log(data));
+          }); 
+          console.log("XYZ");
         }
-        else{
-         
+        else{      
          
        
          
@@ -53,11 +72,12 @@ export class EmployeeComponent implements OnInit {
           resp.subscribe((data)=>console.log(data));
 
         }
-
+        this.onClear();
           this.service.form.reset();
           this.service.initializeFormGroup();
-          this.notificationService.success("Submited successfully!!");
-          this.onClose();
+          this.notificationService.success("Submitted successfully!!");
+         // this.onClose();
+          
     }
   }
 

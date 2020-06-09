@@ -20,14 +20,15 @@ public class OpportunityDAOCustomImpl implements OpportunityDAOCustom {
 	private final String UPDATE_OPPORTUNITY = "UPDATE opportunity set contact_number=?,expected_duration=?,hiring_manager=?,location=?,manager_email=?,opportunity_name=?,skills=? WHERE id=?";
 	private final String DELETE_OPPORTUNITY = "DELETE FROM opportunity WHERE id = ?";
 
+	private final String CHECK_USER = "SELECT count(*) FROM user WHERE id = ?";
+
 	public List<Opportunity> getAllOpportunities() {
-		
-			return jdbcTemplate.query("select * from opportunity",
-					(rs, rowNum) -> new Opportunity(rs.getInt("id"), rs.getString("opportunity_name"),
-							rs.getString("hiring_manager"), rs.getString("manager_email"),
-							rs.getString("contact_number"), rs.getString("location"), rs.getString("skills"),
-							rs.getString("expected_duration")));
-		
+
+		return jdbcTemplate.query("select * from opportunity",
+				(rs, rowNum) -> new Opportunity(rs.getInt("id"), rs.getString("opportunity_name"),
+						rs.getString("hiring_manager"), rs.getString("manager_email"), rs.getString("contact_number"),
+						rs.getString("location"), rs.getString("skills"), rs.getString("expected_duration")));
+
 	}
 
 	public boolean updateOpportunity(Opportunity o) {
@@ -57,6 +58,15 @@ public class OpportunityDAOCustomImpl implements OpportunityDAOCustom {
 
 		);
 
+	}
+
+	public boolean checkUser(String token) {
+		
+		if (jdbcTemplate.queryForObject(CHECK_USER, new Object[] { token }, Integer.class) > 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

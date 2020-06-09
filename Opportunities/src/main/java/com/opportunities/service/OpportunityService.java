@@ -26,8 +26,9 @@ public class OpportunityService {
 
 	public  List<Opportunity> getOpportunities() {
 		
-		List<Opportunity> opportunities =dao.getAllOpportunities();
+		List<Opportunity> opportunities =dao.getAllOpportunities(); 
 		//return  dao.getAllOpportunities();
+		System.out.println(opportunities);
 		return opportunities;
 	}
 	public void deleteOpportunity(Integer id)
@@ -44,6 +45,20 @@ public class OpportunityService {
 		
 		return responseString;
 	}
+	
+	public String checkUser(String token) {
+	
+		String responseString;
+		if(	dao.checkUser(token))
+			responseString="Login sucessfull and User is Authenticated";
+		else {
+			responseString="Login failed,please try again";
+		}
+		
+		return responseString;
+	}
+	
+	
 	public List<LocationCount> getLocation()
 	{
 	//	dao.getLocation().get(1).toString();

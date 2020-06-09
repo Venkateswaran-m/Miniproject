@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { FormGroup, FormControl, Validators, MinLengthValidator } from "@angular/forms";
 import { HttpClient, HttpClientModule, HttpHeaders } from "@angular/common/http";
 import { Opportunity } from "../opportunity";
+import { BehaviorSubject } from 'rxjs';
 
 
 
@@ -11,6 +12,14 @@ import { Opportunity } from "../opportunity";
 })
 
 export class EmployeeService {
+  private messageSource = new BehaviorSubject('default message');
+  currentMessage = this.messageSource.asObservable();
+
+  
+
+  changeMessage(message: string) {
+    this.messageSource.next(message)
+  }
   countByLocation() {
 
       return this.http.get("http://localhost:8080/getlocationcount")
@@ -64,7 +73,7 @@ export class EmployeeService {
 
   insertOpportunity(opportunity) {
    
-    return this.http.post("http://localhost:8080/addopportunity/", opportunity);
+     return this.http.post("http://localhost:8080/addopportunity/", opportunity);
 
   }
 
@@ -79,4 +88,9 @@ export class EmployeeService {
     return this.http.delete("http://localhost:8080/deleteopportunity/" + id);
   }
 
+
 }
+
+
+
+

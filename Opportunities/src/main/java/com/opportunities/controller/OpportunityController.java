@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -50,33 +51,54 @@ public class OpportunityController {
 	public String addOpportunity(@RequestBody Opportunity opportunity)
 	{
 		 LOGGER.log(Level.INFO, "Opportunity Added	"); 
+		 System.out.println(opportunity);
 		opportunityService.addOpportunity(opportunity);
 		return "completed";
 	}
+	 @GetMapping("/users")
+		String checkUser(@RequestHeader("Authorization") String token)
+		{
+				return opportunityService.checkUser(token);
+		}
+	
+	
 	@GetMapping(path = "/all")
-	public @ResponseBody List<Opportunity> getAlOpportunities() {
+	public @ResponseBody List<Opportunity> getAlOpportunities(@RequestHeader("Authorization") String token) {
+		
+		if(opportunityService.checkUser(token)=="Login sucessfull and User is Authenticated") {
 		 LOGGER.log(Level.INFO, "Retrieved opportunities"); 
 		return opportunityService.getOpportunities();
+		}
+		return null;
 	}
 	@DeleteMapping("/deleteopportunity/{Id}")
-	public List<Opportunity> deleteOpportunity(@PathVariable Integer Id)
+	public List<Opportunity> deleteOpportunity(@PathVariable Integer Id,@RequestHeader("Authorization") String token)
 	{
+		if(opportunityService.checkUser(token)=="Login sucessfull and User is Authenticated") {
 		opportunityService.deleteOpportunity(Id);
 		 LOGGER.log(Level.INFO, "Opportunity Deleted"); 
 		return opportunityService.getOpportunities();
+		}
+		return null;
 	}
 	
 	@PutMapping("/updateopportunity")
-	public String updateOpportunity(@RequestBody Opportunity o)
+	public String updateOpportunity(@RequestBody Opportunity o,@RequestHeader("Authorization") String token)
 	{
+		if(opportunityService.checkUser(token)=="Login sucessfull and User is Authenticated") {
 		 LOGGER.log(Level.INFO, "Opportunity Updated"); 
 		System.out.println("Updating : "+ o);
 		return opportunityService.updateOpportunity(o);
+		}
+		return null;
 	}
 	@GetMapping("/getlocationcount")
-	public List<LocationCount> getLocationCount()
+	public List<LocationCount> getLocationCount(@RequestHeader("Authorization") String token)
 	{
+		if(opportunityService.checkUser(token)=="Login sucessfull and User is Authenticated") {
 		 LOGGER.log(Level.INFO, "Location count obtained"); 
 		return opportunityService.getLocation();
+		}
+		return null;
 	}
 }
