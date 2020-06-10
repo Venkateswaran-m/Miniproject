@@ -56,7 +56,8 @@ public message:string;
        {this.message="ABC";        
        //this.dialogRef.close( this.service.form.value );
         // this.service.currentMessage.subscribe(message => this.message = message)
-          let res=this.service.insertOpportunity(this.service.form.value).subscribe((data)=>
+          let res=this.service.insertOpportunity(this.service.form.value)
+          .subscribe((data)=>
           {console.log("datqa");
           console.log(data);
             
