@@ -50,7 +50,7 @@ export class AppComponent implements OnInit {
       resp.subscribe(result => this.ngZone.run(() =>{
         
         let x=JSON.stringify(result);
-         if(x === "Login sucessfull and User is Authenticated")
+         if(x === "Login successful")
          {
           //this.router.navigateByUrl("/opportunity");
           this.loggedIn=true;

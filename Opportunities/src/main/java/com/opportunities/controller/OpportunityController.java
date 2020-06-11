@@ -31,20 +31,7 @@ public class OpportunityController {
 	private final static Logger LOGGER =  
             Logger.getLogger(Logger.GLOBAL_LOGGER_NAME); 
 
-//	@RequestMapping(value="/addopportunity", method=RequestMethod.POST)
-//	public String addCandidate( Opportunity opportunity)
-//	{
-//		System.out.println(opportunity.toString());
-//		opportunityService.addOpportunity(opportunity);
-//		return "completed";
-//	}
-	
-//	@PostMapping("/addopportunity")
-//	public String addopportunity(@RequestBody Opportunity o)
-//	{
-//		System.out.println("Adding Opportunity");
-//		return opportunityService.addOpportunity(o);
-//	}
+
 
 	@RequestMapping(value="/addopportunity", method=RequestMethod.POST)
 
@@ -65,7 +52,7 @@ public class OpportunityController {
 	@GetMapping(path = "/all")
 	public @ResponseBody List<Opportunity> getAlOpportunities(@RequestHeader("Authorization") String token) {
 		
-		if(opportunityService.checkUser(token)=="Login sucessfull and User is Authenticated") {
+		if(opportunityService.checkUser(token)=="Login successful") {
 		 LOGGER.log(Level.INFO, "Retrieved opportunities"); 
 		return opportunityService.getOpportunities();
 		}
@@ -74,7 +61,7 @@ public class OpportunityController {
 	@DeleteMapping("/deleteopportunity/{Id}")
 	public List<Opportunity> deleteOpportunity(@PathVariable Integer Id,@RequestHeader("Authorization") String token)
 	{
-		if(opportunityService.checkUser(token)=="Login sucessfull and User is Authenticated") {
+		if(opportunityService.checkUser(token)=="Login successful") {
 		opportunityService.deleteOpportunity(Id);
 		 LOGGER.log(Level.INFO, "Opportunity Deleted"); 
 		return opportunityService.getOpportunities();
@@ -85,7 +72,7 @@ public class OpportunityController {
 	@PutMapping("/updateopportunity")
 	public String updateOpportunity(@RequestBody Opportunity o,@RequestHeader("Authorization") String token)
 	{
-		if(opportunityService.checkUser(token)=="Login sucessfull and User is Authenticated") {
+		if(opportunityService.checkUser(token)=="Login successful") {
 		 LOGGER.log(Level.INFO, "Opportunity Updated"); 
 		System.out.println("Updating : "+ o);
 		return opportunityService.updateOpportunity(o);
@@ -95,7 +82,7 @@ public class OpportunityController {
 	@GetMapping("/getlocationcount")
 	public List<LocationCount> getLocationCount(@RequestHeader("Authorization") String token)
 	{
-		if(opportunityService.checkUser(token)=="Login sucessfull and User is Authenticated") {
+		if(opportunityService.checkUser(token)=="Login successful") {
 		 LOGGER.log(Level.INFO, "Location count obtained"); 
 		return opportunityService.getLocation();
 		}

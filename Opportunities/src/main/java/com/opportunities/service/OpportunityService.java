@@ -50,9 +50,9 @@ public class OpportunityService {
 	
 		String responseString;
 		if(	dao.checkUser(token))
-			responseString="Login sucessfull and User is Authenticated";
+			responseString="Login successful";
 		else {
-			responseString="Login failed,please try again";
+			responseString="Login failed";
 		}
 		
 		return responseString;

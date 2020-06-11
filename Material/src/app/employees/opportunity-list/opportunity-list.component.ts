@@ -22,7 +22,7 @@ export class OpportunityListComponent implements OnInit {
   listData = new MatTableDataSource<Opportunity>();
   message:string;
 
-  displayedColumns: any = ['id', 'opportunityName', 'managerEmail', 'contactNumber', 'location', 'skills', 'hiringManager', 'expectedDuration', 'actions',];
+  displayedColumns: any = [ 'opportunityName', 'managerEmail', 'contactNumber', 'location', 'skills', 'hiringManager', 'expectedDuration', 'actions',];
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(EmployeeComponent) emp:string;
