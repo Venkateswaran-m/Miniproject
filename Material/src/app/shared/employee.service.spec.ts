@@ -68,7 +68,6 @@ describe('EmployeeService', () => {
     const newopp ={opportunityName: 'Developer',hiringManager: 'venkat',skills: 'java',managerEmail: 'venkat@gmail.com',expectedDuration : "2",location: 'chennai',contactNumber:"9842422507"};
     
     service.insertOpportunity(newopp).subscribe(data=>{
-      console.log(data);
       expect(data).toEqual("Inserted SucessFully");
     });
   });
@@ -77,7 +76,6 @@ describe('EmployeeService', () => {
     const newopp ={opportunityName: 'Developer',hiringManager: 'venkat',skills: 'java',managerEmail: 'venkat@gmail.com',expectedDuration : "2",location: 'chennai',contactNumber:"9842422507"}
     
     service.updateOpportunity(newopp).subscribe(data=>{
-      console.log(data);
       expect(data).toEqual("Updated SucessFully");
     });
   });
@@ -85,7 +83,6 @@ describe('EmployeeService', () => {
   it('should update opportunities from the API via DELETE',() =>{
     let id:1;    
     service.deleteOpportunity(id).subscribe(data=>{
-      console.log(data);
       expect(data).toEqual("Deleted SucessFully");
     });
   });

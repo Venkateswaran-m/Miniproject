@@ -48,29 +48,10 @@ export class OpportunityListComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = "60%";
     const dialogRef = this.dialog.open(EmployeeComponent, dialogConfig)
-   
-    //this.service.currentMessage.subscribe(message =>console.log( message))
-    //console.log(this.emp.im);
-    //this.refreshData();
     dialogRef.afterClosed().subscribe(result => {
-      console.log("Creating");     
-      console.log(result);
-
+    
       this.listData.data=[...this.listData.data,result];
-      console.log(this.listData.data);
-     //this.emp.
-    //   this.service.getOpportunities().subscribe(
-
-    //     (data: any[]) => {
-         
-    //       this.listData.data = data;
-          
-    //       this.listData.sort = this.sort;
-    //       setTimeout(() => this.listData.paginator = this.paginator);
-
-
-    //     });
-
+     
      });
       
 
@@ -90,10 +71,8 @@ export class OpportunityListComponent implements OnInit {
 
     const dialogRef = this.dialog.open(EmployeeComponent, dialogConfig);
 
-    //this.refreshData();
+   
     dialogRef.afterClosed().subscribe(result => {
-      console.log("update");
-     console.log(result);
       this.service.getOpportunities().subscribe(
 
         (data: any[]) => {
@@ -104,10 +83,7 @@ export class OpportunityListComponent implements OnInit {
 
 
         });
-      // this.listData.data=[...this.listData.data.filter(instance=>instance.opportunityName!=result.opportunityName), result];      
-      // console.log(this.listData.data);
-      // this.listData.sort=this.sort;
-
+     
     });
       
 
@@ -118,15 +94,10 @@ export class OpportunityListComponent implements OnInit {
     if (confirm('Are you sure to delete this the record?' + id)) {
       let res = this.service.deleteOpportunity(id);
       res.subscribe(data => {
-        console.log(data)
         this.listData.data.splice(id, 1);
-        console.log("delete1");
-        console.log(this.listData.data.splice(id, 1));
-        // this.listData.data=[...this.listData.data];
         this.changeDetectorRefs.detectChanges();
         this.refreshData();
-        //this.listData.data={...this.listData.data.filter(instance=>instance!=data)};
-
+       
       });
       this.notificationService.warn('! Deleted Successfully');
 
@@ -141,8 +112,6 @@ export class OpportunityListComponent implements OnInit {
       (data: Opportunity[]) => {
 
         this.listData.data = data;
-        console.log("ngoninit");
-        console.log(this.listData.data); 
         this.listData.sort = this.sort;
         setTimeout(() => this.listData.paginator = this.paginator);
 

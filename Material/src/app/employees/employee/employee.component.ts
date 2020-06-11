@@ -58,12 +58,10 @@ public message:string;
         // this.service.currentMessage.subscribe(message => this.message = message)
           let res=this.service.insertOpportunity(this.service.form.value)
           .subscribe((data)=>
-          {console.log("datqa");
-          console.log(data);
-            
+          {          
           
           }); 
-          console.log("XYZ");
+          
         }
         else{      
          

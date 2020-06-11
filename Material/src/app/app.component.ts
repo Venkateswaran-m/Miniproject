@@ -35,7 +35,6 @@ export class AppComponent implements OnInit {
                 
                const str=response.idToken;
                const str1=str.substring(0,10);
-               console.log(str1);
                 localStorage.setItem('token',str1);
               }
               else {
@@ -51,7 +50,6 @@ export class AppComponent implements OnInit {
       resp.subscribe(result => this.ngZone.run(() =>{
         
         let x=JSON.stringify(result);
-        console.log(x);
          if(x === "Login sucessfull and User is Authenticated")
          {
           //this.router.navigateByUrl("/opportunity");
