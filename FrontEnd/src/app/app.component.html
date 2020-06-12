@@ -1,0 +1,54 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Accolite University</title>
+</head>
+
+<body>
+  <div class="container">
+    
+
+
+
+
+    <mat-toolbar  style="background-color: white;">
+      <img src="../assets/logo.jpg" style="height:50px; width: auto" alt="Accolite University">OPPORTUNITY MANAGEMENT
+
+    <div *ngIf="loggedIn===false">
+      <button mat-raised-button color="primary" style="right: -650px; " (click)="signInWithGoogle()">Sign In With Google</button>
+      <br>
+    </div>
+    
+    
+    <div class="signoutoption" *ngIf="loggedIn===true">
+      <nav>
+      <br>
+      <a mat-button routerLink="/Trends" routerLinkActive="active">Trends</a>
+          <a mat-button routerLink="/Opportunities" routerLinkActive="active" >Opportunities</a>
+        
+      </nav>
+    <div class="podalanga">
+      <button mat-raised-button color="primary" id="signOut" style="right: -650px;margin-top: 0px;padding-top: 0px; " (click)="signOut()">Sign Out</button>
+    </div>
+    </div>
+  </mat-toolbar>
+<div *ngIf="loggedIn===false">
+  <img src="../assets/frontpage.jpg" style="width:fit-content;height:fit-content;">
+</div>
+  </div>
+
+   
+  <div *ngIf="loggedIn===true">
+    <router-outlet></router-outlet>
+  </div>
+
+
+</body>
+
+</html>
