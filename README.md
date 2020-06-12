@@ -32,12 +32,14 @@ Tested with Junit and Mockito. Global Exception handling added.
 Project structure:
 src
 ├───app
-│   ├───employees
-│   │   ├───employee
-│   │   └───opportunity-list
-│   ├───material
-│   ├───shared
-│   ├───trends
-│   └───view-opportunity
+│   ├───components
+│   │   ├───employees
+│   │   │   ├───employee
+│   │   │   └───opportunity-list
+│   │   ├───material
+│   │   ├───trends
+│   │   └───view-opportunity
+│   ├───Models
+│   └───shared
 ├───assets
 └───environments
