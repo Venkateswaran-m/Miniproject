@@ -8,11 +8,14 @@ import { provideConfig } from './app.module';
 import { HttpClientModule } from '@angular/common/http';
 import {HarnessLoader} from '@angular/cdk/testing';
 import {TestbedHarnessEnvironment} from '@angular/cdk/testing/testbed';
+import { By } from '@angular/platform-browser';
 
 
 let loader: HarnessLoader;
 
 describe('AppComponent', () => {
+
+  let component: AppComponent;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -60,6 +63,7 @@ describe('AppComponent', () => {
     await login.click();
     //expect(fixture.componentInstance.loggedIn).toBe(true);
   });
+ 
 
 
   it('should work', async () => {
@@ -68,10 +72,18 @@ describe('AppComponent', () => {
     //const footerButton = await footerLoader.getHarness(MatButtonHarness);
   });
 
-  // it('should render title', () => {
-  //   const fixture = TestBed.createComponent(AppComponent);
-  //   fixture.detectChanges();
-  //   const compiled = fixture.nativeElement;
-  //   expect(compiled.querySelector('.content span').textContent).toContain('Material app is running!');
-  // });
+  xit('should logout',() => {
+    component.signOut();
+  });
+  xit('should render the trend button',() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    let btn = fixture.debugElement.query(By.css('#trend')).nativeElement;
+    btn.click();
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      expect(location.pathname).toEqual('/trends');
+    });
+  });
+
 });

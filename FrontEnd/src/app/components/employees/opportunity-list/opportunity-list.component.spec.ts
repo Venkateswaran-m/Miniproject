@@ -9,6 +9,8 @@ import {HarnessLoader} from '@angular/cdk/testing';
 import {TestbedHarnessEnvironment} from '@angular/cdk/testing/testbed';
 import {MatTableHarness} from '@angular/material/table/testing'; 
 import {MatButtonHarness} from '@angular/material/button/testing';
+import { By } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('OpportunityListComponent', () => {
   let component: OpportunityListComponent;
@@ -20,7 +22,7 @@ describe('OpportunityListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ OpportunityListComponent ],
-      imports:[HttpClientModule,MatDialogModule,MatSnackBarModule],
+      imports:[HttpClientModule,MatDialogModule,MatSnackBarModule,BrowserAnimationsModule],
       providers:[EmployeeService],
     })
     .compileComponents();
@@ -42,13 +44,46 @@ describe('OpportunityListComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  xit('buttons should work', async () => {
-    //const buttons = await loader.getAllHarnesses(MatButtonHarness); // length: 3
-    const firstButton = await loader.getHarness(MatButtonHarness); // === buttons[0]
+  
+
+  it('should render the search button',() => {
+    fixture.detectChanges();
+    let btn = fixture.debugElement.query(By.css('#search')).nativeElement;
+    btn.click();
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      expect(location.pathname).toEqual('/opportunties');
+    });
   });
- xit('table should work', async () => {
-    const buttons = await loader.getAllHarnesses(MatTableHarness); // length: 3
-   // const firstButton = await loader.getHarness(MatTableHarness); // === buttons[0]
+  it('should render the Create Opportunity button',() => {
+    fixture.detectChanges();
+    let btn = fixture.debugElement.query(By.css('#Opportunity')).nativeElement;
+    btn.click();
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      expect(location.pathname).toEqual('/opportunities');
+    });
+  });
+  xit('should render the Edit Opportunity button',() => {
+    fixture.detectChanges();
+    let btn = fixture.debugElement.query(By.css('#editOpportunity')).nativeElement;
+    btn.click();
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      expect(location.pathname).toEqual('/opportunities');
+    });
   });
 
+
+
+  it('should render the Create Opportunity dialog',() => {
+    component.onCreate();
+  });
+  it('should delete Opportunity',() => {
+    component.onDelete(1);
+  });
+  xit('should edit Opportunity',() => {
+    const newopp ={id:'1',opportunityName: 'Developer',hiringManager: 'venkat',skills: 'java',managerEmail: 'venkat@gmail.com',expectedDuration : "2",location: 'chennai',contactNumber:"9842422507"};
+    component.onEdit(newopp);
+  });
 });

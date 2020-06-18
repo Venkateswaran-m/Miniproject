@@ -40,7 +40,7 @@ public class OpportunityService {
 		if(dao.updateOpportunity(o))
 			responseString="Inserted SucessFully";
 		else {
-			responseString="Somthing went wrong not added,please try again";
+			responseString="Insertion Failed";
 		}
 		
 		return responseString;

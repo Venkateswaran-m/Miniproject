@@ -41,7 +41,7 @@ export class OpportunityListComponent implements OnInit {
   }
 
   onCreate() {
-    event.preventDefault();
+   // event.preventDefault();
     this.service.initializeFormGroup();
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
@@ -49,19 +49,18 @@ export class OpportunityListComponent implements OnInit {
     dialogConfig.width = "60%";
     const dialogRef = this.dialog.open(EmployeeComponent, dialogConfig)
     dialogRef.afterClosed().subscribe(result => {
-    
+
       this.listData.data=[...this.listData.data,result];
-     
+
      });
-      
+
 
   }
 
 
 
   onEdit(row) {
-    event.preventDefault();
-
+    //event.preventDefault();
     this.service.populateForm(row);
 
     const dialogConfig = new MatDialogConfig();
@@ -71,33 +70,33 @@ export class OpportunityListComponent implements OnInit {
 
     const dialogRef = this.dialog.open(EmployeeComponent, dialogConfig);
 
-   
+
     dialogRef.afterClosed().subscribe(result => {
       this.service.getOpportunities().subscribe(
 
         (data: any[]) => {
-         
+
           this.listData.data = data;
           this.listData.sort = this.sort;
           setTimeout(() => this.listData.paginator = this.paginator);
 
 
         });
-     
+
     });
-      
+
 
   }
 
   onDelete(id) {
-    event.preventDefault();
+    //event.preventDefault();
     if (confirm('Are you sure to delete this the record?' + id)) {
       let res = this.service.deleteOpportunity(id);
       res.subscribe(data => {
         this.listData.data.splice(id, 1);
         this.changeDetectorRefs.detectChanges();
         this.refreshData();
-       
+
       });
       this.notificationService.warn('! Deleted Successfully');
 
