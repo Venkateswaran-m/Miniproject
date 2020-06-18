@@ -6,6 +6,7 @@ Project Structure:
 1) Spring Boot:
 
 Project structure:
+```
 src
 ├───main
 │   ├───java
@@ -24,20 +25,24 @@ src
     └───java
         └───com
             └───opportunities
-
+```
 Tested with Junit and Mockito. Global Exception handling added.
 
 2)Angular
 
 Project structure:
+```
 src
 ├───app
-│   ├───employees
-│   │   ├───employee
-│   │   └───opportunity-list
-│   ├───material
-│   ├───shared
-│   ├───trends
-│   └───view-opportunity
+│   ├───components
+│   │   ├───employees
+│   │   │   ├───employee
+│   │   │   └───opportunity-list
+│   │   ├───material
+│   │   ├───trends
+│   │   └───view-opportunity
+│   ├───Models
+│   └───shared
 ├───assets
 └───environments
+```
